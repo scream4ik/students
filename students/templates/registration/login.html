@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="login_part">
+	<div class="login_field">
+	{% if user.is_authenticated %}
+	В чём дело, {{ user.username }}? Вы уже авторизированны.
+	Впрочем всегда можно <a href="{% url auth_logout %}">выйти</a>.<br/><br/>
+
+	{% else %}
+
+	{% if form.non_field_errors %}
+	{{ form.non_field_errors }}
+	{% endif %}
+		<p class="text_login">Войти</p>
+		<form method="post">{% csrf_token %}
+			{{ form.as_p }}
+			<p><input type="submit" value="Войти"></p>
+		</form>
+{% endif %}
+	</div>
+</div>
+{% endblock %}
