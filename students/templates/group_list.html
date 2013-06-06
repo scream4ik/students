@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>группа {{ group }}</h1>
+<a href="{% url student_add group.id %}">Добавить студента</a>
+<ul>
+	{% for student in students %}
+		<li>{{ student }} <a href="{% url student_edit group.id student.id %}">Редактировать</a> <a href="{% url student_del group.id student.id %}">Удалить</a></li>
+	{% endfor %}
+</ul>
+{% endblock %}

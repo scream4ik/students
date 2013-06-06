@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load students_tags %}
+
+{% block content %}
+<a href="{% url group_add %}">Добавить группу</a>
+<table border="1">
+	<tr>
+		<td>Группа</td><td>Староста</td><td>Управление</td>
+	</tr>
+	{% for group in groups %}
+		<tr>
+			<td><a href="{% url group_list group.id %}">{{ group.name }}</a></td><td>{{ group.elder }}</td><td><a href="{% url group_edit group.id %}">Редактировать группу</a> | <a href="{% url group_del group.id %}">Удалить группу</a> | {% edit_link group %}</td>
+		</tr>
+	{% endfor %}
+</table>
+{% endblock %}
